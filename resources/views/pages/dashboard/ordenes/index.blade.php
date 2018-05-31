@@ -24,17 +24,8 @@
                                 @{{orden.telefono}}<br>
                                 @{{orden.codigo_postal}}<br>
                                 @{{orden.estado}}<br>
-
-
                             </address>
-                            {{--<h4 class="text-muted">Calle</h4>--}}
-                            {{--@{{orden.calle}}--}}
-                            {{--<h4 class="text-muted">Codigo Postal</h4>--}}
-                            {{--@{{orden.codigopostal}}--}}
-                            {{--<h4 class="text-muted">Estado</h4>--}}
-                            {{--@{{orden.estado}}--}}
-                            {{--<h4 class="text-muted">Pais</h4>--}}
-                            {{--@{{orden.pais}}--}}
+
                         </div>
 
 
@@ -53,10 +44,10 @@
         <!-- Main section-->
             <section>
                 <!-- Page content-->
-                @component('partials.titlemodule')
-                    Ordenes
+                {{--@component('partials.titlemodule')--}}
+                {{--denes Or--}}
 
-                @endcomponent
+                {{--@endcomponent--}}
                 <div style="padding-left: 20px">
 
                     <div class="row">
@@ -82,7 +73,7 @@
                                         <th>Fecha registro</th>
                                         <th>Método envio</th>
                                         <th># Items</th>
-                                        <th>Items sin ruta de procesos</th>
+                                        <th>Items con ruta de procesos</th>
 
                                         <th>Imposición</th>
                                         <th>Producción</th>
@@ -155,15 +146,60 @@
 
 
                     </div>
+
+
+                    <div class="row">
+
+
+                        <div class="col-md-6 col-md-offset-3 ">
+                            <h1>Procesos</h1>
+                            <div class="row">
+                                <div ng-repeat="(listName, list) in models.procesos " class="col-md-6">
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 ng-show="listName=='Asignados'" class="panel-title">
+                                                Asignados</h3>
+                                            <h3 ng-show="listName=='Lista'" class="panel-title"> Disponibles</h3>
+                                        </div>
+                                        <ul dnd-list="list" class="list-group" style="min-height: 300px"
+                                        >
+
+                                            <li ng-repeat="proceso in list"
+                                                dnd-draggable="proceso"
+                                                dnd-moved="list.splice($index, 1)"
+                                                dnd-effect-allowed="move"
+                                                dnd-selected="models.selected = item"
+                                                ng-class="{'selected': models.selected === item};"
+                                                class="list-group-item"
+                                            >
+
+
+                                                <em class="icon-settings"></em>
+                                                <div ng-if="listName=='Asignados'"
+                                                     class="pull-right label label-warning">
+                                                    @{{ $index+1 }}
+                                                </div>
+                                                :: @{{ proceso.descripcion}}
+                                            </li>
+                                            <li class="dndPlaceholder">
+                                                Arrastra cualquier proceso
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+                    </div>
                 </div>
             </section>
             {{--<script src="{{asset('logic/main.js')}}"></script>--}}
             <script src="{{asset('logic/controllers/ordenes.js')}}"></script>
-            <style>
-                .mal {
-                    background-color: red;
-                }
-            </style>
             <!-- Page footer-->
             <footer>
                 @include("partials.footer")
