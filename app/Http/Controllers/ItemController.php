@@ -111,6 +111,12 @@ class ItemController extends Controller
         return response()->json($item->Listar());
     }
 
+    public function porProcesar($id_proceso){
+        $item= new Item();
+
+        return response()->json($item->PorProcesar($id_proceso));
+    }
+
 
 
 

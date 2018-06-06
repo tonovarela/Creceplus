@@ -121,9 +121,9 @@
                             {{--</li>--}}
                             @if ( Session::get('entorno')->mnu_produccion_offset=='1')
                                 <li>
-                                    <a href="#" title="ImpresionOffset">
-                                        <div class="pull-right label label-success">@{{Produccion.Offset}}</div>
-                                        <span>-Impresión Offset</span>
+                                    <a href="#" title="Impresion">
+                                        <div class="pull-right label label-success">@{{Produccion.Impresion}}</div>
+                                        <span>-Impresión</span>
                                     </a>
                                 </li>
                             @endif

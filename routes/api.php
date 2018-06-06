@@ -40,6 +40,10 @@ Route::get("v2/ordenes","OrdenController@listarOrdenes");
 
 
 
+Route::get("v2/totalprocesosactuales","ProduccionController@totalProcesosActuales");
+Route::get("v2/itemsporprocesar/{id_proceso}","ItemController@porProcesar");
+Route::get("v2/estacionesporproceso/{id_proceso}","EstacionController@listarPorProceso");
+
 
 //  ------  Items  -------
 Route::get("v1/procesositems/{itemID}",'ItemController@Procesos');
@@ -65,10 +69,10 @@ Route::get("v1/orden/productos/{numeroOrden}","OrdenController@listarProductos")
 
 
 
-Route::get("v1/totalprocesosactuales","ProduccionController@totalProcesosActuales");
 
 
-Route::get("v1/estacionesporproceso/{id_proceso}","EstacionController@listarPorProceso");
+
+
 
 
 

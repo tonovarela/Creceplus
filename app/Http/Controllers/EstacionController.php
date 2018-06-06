@@ -57,9 +57,8 @@ class EstacionController extends Controller
     //API
     public function listarPorProceso($id_proceso)
     {
-
         $estacion= new Estacion();
-        return $estacion->listarrPorProceso($id_proceso);
+        return $estacion->listarPorProceso($id_proceso);
 
     }
 

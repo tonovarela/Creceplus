@@ -1,41 +1,30 @@
 app.controller("AsideController", function ($scope, apiService, socket) {
 
-    $scope.Produccion = {
-        CTP: 0,
-        Offset: 0,
-        Laminado: 0,
-        Barniz: 0,
-        Corte: 0,
-        Suajado: 0,
-        Doblez: 0,
-        Engrapado: 0,
-        AcabadoManual: 0,
-        ControlCalidad: 0
-    };
+    $scope.Produccion = {};
     $scope.Procesos = [];
     $scope.cargarTotales = function () {
         apiService.getTotalProcesosActuales().then(function (result) {
-            angular.forEach(result.data, function (x) {
-                $scope.Procesos[x.id_proceso] = x.total;
-            });
+             var data = result.data;
             $scope.Produccion = {
-                CTP: $scope.Procesos[1],
-                Offset: $scope.Procesos[2],
-                Laminado: $scope.Procesos[4],
-                Barniz: $scope.Procesos[5],
-                Corte: $scope.Procesos[6],
-                Suajado: $scope.Procesos[7],
-                Doblez: $scope.Procesos[8],
-                Engrapado: $scope.Procesos[9],
-                AcabadoManual: $scope.Procesos[11],
-                ControlCalidad: $scope.Procesos[12]
-            };
-            console.log("Totales Recargados");
+                CTP:data.find(x=>x.descripcion==="CTP").total,
+                Impresion: data.find(x=>x.descripcion==="Impresión").total,
+                Laminado: data.find(x=>x.descripcion==="Laminado").total,
+                Barniz: data.find(x=>x.descripcion==="Barniz UV").total,
+                Corte: data.find(x=>x.descripcion==="Corte").total,
+                Suajado: data.find(x=>x.descripcion==="Suajado").total,
+                Doblez: data.find(x=>x.descripcion==="Doblez").total,
+                Engrapado: data.find(x=>x.descripcion==="Engrapado").total,
+                AcabadoManual: data.find(x=>x.descripcion==="Acabado Manual").total,
+                ControlCalidad:data.find(x=>x.descripcion==="Control de Calidad").total
+                };
+
+
+
         });
     };
-
     socket.on('Produccion', function (data) {
         $scope.cargarTotales();
     });
+
     $scope.cargarTotales();
 });

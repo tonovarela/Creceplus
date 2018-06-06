@@ -95,15 +95,15 @@ app.service('apiService', function (SERVERS, $http) {
 
     //Aside
     this.getTotalProcesosActuales = function () {
-        return $http.get(server + '/api/v1/totalprocesosactuales');
+        return $http.get(server + 'api/v2/totalprocesosactuales');
     };
 
     this.getEstacionesPorProceso=function(idproceso){
-        return $http.get(server+'/api/v1/estacionesporproceso/'+idproceso);
-    }
+        return $http.get(server+'api/v2/estacionesporproceso/'+idproceso);
+    };
 
-    this.getProductosPorProcesar=function(idproceso){
-        return $http.get(server+"/api/v1/productosporprocesar/"+idproceso);
+    this.getItemsPorProcesar=function(idproceso){
+        return $http.get(server+"api/v2/itemsporprocesar/"+idproceso);
 
     }
 

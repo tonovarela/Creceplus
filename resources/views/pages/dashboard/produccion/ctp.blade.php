@@ -56,55 +56,115 @@
 
 
                 <div class="container ">
-
-                    {{--<div class="row">--}}
-                        {{--<div class="col-lg-offset-10 col-md-offset-10 col-xs-offset-10">--}}
-                            {{--<button class="btn btn-md btn-default"><em class="fa fa-refresh"></em></button>--}}
-                        {{--</div>--}}
-
-                    {{--</div>--}}
                     <div class="row">
-                        <div class="col-md-11">
+                        <div class="col-12">
                             <div id="inner-content-div">
-                                <div class="list-group list-group-produccion" ng-repeat="producto in productos">
+                                <div class="list-group-item">
+                                    <table class="wd-wide">
+                                        <tbody>
+                                        <tr>
+                                            <td class="wd-xs">
+
+                                            </td>
+                                            <td >
+                                                <div class="ph">
+                                                    <h4 class="media-box-heading">SKU</h4>
+
+                                                </div>
+                                            </td>
+                                            <td class="wd-sm ">
+                                                <div class="ph">
+                                                    <p class="m0">Pliego</p>
+                                                </div>
+                                            </td>
+                                            <td class="wd-sm ">
+                                                <div class="ph">
+                                                    <p class="m0">Subpliego</p>
+
+                                                </div>
+                                            </td>
+                                            <td class="wd-sm ">
+                                                <div class="ph">
+                                                    <p class="m0">Orden</p>
+                                                </div>
+                                            </td>
+                                            <td class="wd-sm ">
+                                                <div class="ph">
+                                                    <p class="m0">Copias requeridas</p>
+
+                                                </div>
+                                            </td>
+                                            <td class="wd-sm ">
+                                                <div class="ph">
+                                                    <p class="m0">Copias producidas</p>
+
+                                                </div>
+                                            </td>
+
+
+                                            <td class="wd-xs ">
+                                                <div class="ph">
+                                                    <p class="m0 ">
+
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="list-group list-group-produccion" ng-repeat="item in items">
                                     <div class="list-group-item">
                                         <table class="wd-wide">
                                             <tbody>
                                             <tr>
                                                 <td class="wd-xs">
                                                     <div class="ph">
-                                                        <em class="fa fa-file-image-o fa-2x text-purple"></em>
+                                                        <em class="fa fa-file-image-o fa-3x text-purple"></em>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td >
                                                     <div class="ph">
-                                                        <h4 class="media-box-heading">@{{producto.nombreproducto}}</h4>
-                                                        <small class="text-muted">@{{ producto.id_producto }}</small>
+                                                        <h4 class="media-box-heading">@{{ item.id_item }}</h4>
+                                                        <small class="text-muted">@{{ item.sku }}</small>
                                                     </div>
                                                 </td>
-                                                <td class="wd-sm hidden-xs hidden-sm">
+                                                <td class="wd-sm ">
                                                     <div class="ph">
-                                                        <p class="m0">Orden</p>
-                                                        <small class="text-muted">@{{ producto.orden_numero }}</small>
+
+                                                        <small class="text-muted">@{{ item.nombre_pliego }}</small>
                                                     </div>
                                                 </td>
-                                                <td class="wd-sm hidden-xs hidden-sm">
+                                                <td class="wd-sm ">
                                                     <div class="ph">
-                                                        <p class="m0">Pliego</p>
-                                                        <small class="text-muted">@{{ producto.pliego }}</small>
+
+                                                        <small class="text-muted">@{{ item.subpliego }}</small>
                                                     </div>
                                                 </td>
-                                                <td class="wd-sm hidden-xs hidden-sm">
+                                                <td class="wd-sm ">
                                                     <div class="ph">
-                                                        <p class="m0">Subpliego</p>
-                                                        <small class="text-muted">@{{ producto.subpliego }}</small>
+
+                                                        <small class="text-muted">@{{item.numero_orden}}</small>
+                                                    </div>
+                                                </td>
+                                                <td class="wd-sm ">
+                                                    <div class="ph">
+
+                                                        <small class="text-muted">@{{item.copias_requeridas}}</small>
+                                                    </div>
+                                                </td>
+                                                <td class="wd-sm ">
+                                                    <div class="ph">
+
+                                                        <small class="text-muted">@{{item.copias_producidas}}</small>
                                                     </div>
                                                 </td>
 
-                                                <td class="wd-xs hidden-xs hidden-sm">
+
+                                                <td class="wd-xs ">
                                                     <div class="ph">
                                                         <p class="m0 text-muted">
-                                                            <em class="icon-doc mr fa-lg"></em>@{{ producto.cantidadordenada }} </p>
+                                                            <em class="icon-doc mr fa-lg"></em>url </p>
                                                     </div>
                                                 </td>
 
@@ -132,7 +192,7 @@
 
 
 
-            <script src="{{ asset('logic/ctp.js')}}"></script>
+            <script src="{{ asset('logic/controllers/ctp.js')}}"></script>
 
 
             <!-- Page footer-->

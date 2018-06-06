@@ -7,28 +7,53 @@ use DB;
 class Item
 {
 
-public function ListarProcesos(){
-                $sql="SELECT 
+    public function ListarProcesos()
+    {
+        $sql = "SELECT 
                     proceso.id_proceso,
                     proceso.descripcion,
                     pro.orden
             
-                 FROM       (select 
+                 FROM       (SELECT 
                         id_proceso,
                         orden
-                        from Produccion  
-                        where id_item=:id_item ) as pro
-              right join (SELECT 
+                        FROM Produccion  
+                        WHERE id_item=:id_item ) AS pro
+              RIGHT JOIN (SELECT 
                             b.id_proceso,
                             b.descripcion
-                            FROM Proceso b) AS proceso on (proceso.id_proceso=pro.id_proceso)
-            where 1=1
-            order by pro.orden 
+                            FROM Proceso b) AS proceso ON (proceso.id_proceso=pro.id_proceso)
+            WHERE 1=1
+            ORDER BY pro.orden 
 ";
-            return DB::select($sql, [":id_item" => $id_item]);
-}
+        return DB::select($sql, [":id_item" => $id_item]);
+    }
 
 
+    public function PorProcesar($id_proceso)
+    {
+        $sql = "SELECT 
+	 a.id_item,
+	 a.cantidad,
+	 a.sku,
+	 c.nombre_pliego,
+	 c.subpliego,
+	 c.copias_producidas,
+	 c.copias_requeridas,
+	 a.numero_orden	 	 	 	 
+	  FROM Item a
+	  JOIN Producto b ON (b.sku=a.sku)
+	  JOIN PliegoItem c ON (c.id_item=a.id_item)
+	  JOIN Pliego d ON (d.nombre=c.nombre_pliego)
+	  JOIN Produccion e ON (e.id_item=a.id_item)
+	  WHERE 1=1
+	  AND e.actual=1
+	  AND e.id_proceso=:id_proceso";
+
+        return DB::select($sql, [":id_proceso" => $id_proceso]);
+
+
+    }
 
 //    public function ListarProcesos($id_item)
 //    {

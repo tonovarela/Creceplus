@@ -2,11 +2,11 @@ app.controller("CTPController", function ($scope, apiService, socket, SocketDATA
 
     var id_proceso = 1;
     var promiseEstaciones = apiService.getEstacionesPorProceso(id_proceso);
-    var promiseProductosPorProcesar = apiService.getProductosPorProcesar(id_proceso);
+    var promiseItemsPorProcesar = apiService.getItemsPorProcesar(id_proceso);
 
     $scope.entrada = '';
     $scope.estaciones = [];
-    $scope.productos=[];
+    $scope.productos = [];
 
     //$scope.counter = 2;
     $scope.cargando = false;
@@ -35,19 +35,20 @@ app.controller("CTPController", function ($scope, apiService, socket, SocketDATA
 
 
     $scope.enviando = function () {
-
-
         ///Calback
         socket.emit('Produccion', {CTP: "1"});
 
     };
 
-    $q.all([promiseEstaciones, promiseProductosPorProcesar]).then(function (result) {
-        $scope.estaciones = result[0].data;
-        $scope.productos = result[1].data;
-        $('#inner-content-div').slimScroll({
-            height: '350px'
-        });
+    $q.all([promiseItemsPorProcesar]).then(function (result) {
+
+        // $scope.estaciones = result[0].data;
+         $scope.items = result[0].data;
+        // $('#inner-content-div').slimScroll({
+        //     height: '350px'
+        // });
+        //
+         console.log($scope.items);
 
     });
 

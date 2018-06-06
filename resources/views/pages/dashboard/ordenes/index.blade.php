@@ -48,16 +48,14 @@
                 {{--denes Or--}}
 
                 {{--@endcomponent--}}
-                <div style="padding-left: 20px">
+                <div style="padding: 20px">
 
                     <div class="row">
                         <div class="col-md-6">
                             <input type="text" class="form-control" placeholder="Buscar" ng-model="buscar"/>
                         </div>
                         <div class="col-md-5">
-                        <span class="pull-right">
 
-                            </span>
                         </div>
                     </div>
                     <div class="row">
@@ -148,54 +146,7 @@
                     </div>
 
 
-                    <div class="row">
 
-
-                        <div class="col-md-6 col-md-offset-3 ">
-                            <h1>Procesos</h1>
-                            <div class="row">
-                                <div ng-repeat="(listName, list) in models.procesos " class="col-md-6">
-
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h3 ng-show="listName=='Asignados'" class="panel-title">
-                                                Asignados</h3>
-                                            <h3 ng-show="listName=='Lista'" class="panel-title"> Disponibles</h3>
-                                        </div>
-                                        <ul dnd-list="list" class="list-group" style="min-height: 300px"
-                                        >
-
-                                            <li ng-repeat="proceso in list"
-                                                dnd-draggable="proceso"
-                                                dnd-moved="list.splice($index, 1)"
-                                                dnd-effect-allowed="move"
-                                                dnd-selected="models.selected = item"
-                                                ng-class="{'selected': models.selected === item};"
-                                                class="list-group-item"
-                                            >
-
-
-                                                <em class="icon-settings"></em>
-                                                <div ng-if="listName=='Asignados'"
-                                                     class="pull-right label label-warning">
-                                                    @{{ $index+1 }}
-                                                </div>
-                                                :: @{{ proceso.descripcion}}
-                                            </li>
-                                            <li class="dndPlaceholder">
-                                                Arrastra cualquier proceso
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-
-
-
-                    </div>
                 </div>
             </section>
             {{--<script src="{{asset('logic/main.js')}}"></script>--}}

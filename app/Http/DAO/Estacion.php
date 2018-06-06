@@ -30,19 +30,18 @@ class Estacion
     }
 
 
-    public function listarrPorProceso($id_proceso)
+    public function listarPorProceso($id_proceso)
     {
         $sql = "SELECT 
-	 a.id_estacion,
-	 a.nombre,
-	 c.nombre AS nombreProceso
-	  FROM Estaciones a
-	 JOIN ProcesoEstaciones b ON (a.id_estacion=b.id_estacion)
-	 JOIN Procesos c ON (c.id_proceso=b.id_proceso)
-	 WHERE 1=1
-	 AND b.id_proceso=:id_proceso
-	 AND a.activo=1
-	 ;";
+                     a.id_estacion,
+                     a.nombre,
+                     c.descripcion AS nombreProceso
+                      FROM Estaciones a
+                     JOIN ProcesoEstaciones b ON (a.id_estacion=b.id_estacion)
+                     JOIN Proceso c ON (c.id_proceso=b.id_proceso)
+                     WHERE 1=1
+                     AND b.id_proceso=:id_proceso
+                     AND a.activo=1";
 
         return DB::select($sql, [":id_proceso" => $id_proceso]);
 
